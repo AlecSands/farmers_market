@@ -1,0 +1,94 @@
+/* Current color theme:
+ * https://color.adobe.com/clariandi-color-theme-9819316/
+ */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+a {
+  color: #FB8E89;
+}
+
+.instructions .container h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.instructions {
+    background-color: #564B3D;
+    color: #DDDDDD;
+    padding: 15px;
+}
+
+#entryForm {
+    margin-top: 14px;
+}
+
+.content {
+  padding: 15px;
+}
+
+.container {
+    padding: 10px;
+}
+
+.container p {
+    margin-top : 14px;
+}
+
+.message {
+    padding: 10px 0;
+}
+
+.message p {
+    margin-left: 10px;
+}
+
+.message:nth-child(odd) {
+     background-color: #eeeeee;
+}
+
+.message:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.btn-danger{
+    margin-left: 10px;
+}
+
+.navbar {
+  background-color: #A4B76E;
+  width: 100%;
+  border-radius: 0px;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #564B3D;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    text-decoration: underline;
+    color: #564B3D;
+}
