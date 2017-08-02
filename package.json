@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.5",
     "angular-route": "^1.6.5",
     "babel-preset-env": "^1.6.0",
     "bcrypt": "^1.0.2",
