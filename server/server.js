@@ -5,7 +5,7 @@ var path = require('path');
 
 var passport = require('./strategies/userStrategy');
 var sessionConfig = require('./modules/session.config');
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 6240;
 
 // Route includes
 var indexRouter = require('./routes/index.router');

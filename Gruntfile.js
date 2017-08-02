@@ -3,46 +3,29 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     /* Convert ES6 to ES5 */
     babel: {
-        options: {
-            presets: ['babel-preset-env']
-        },
-        scripts: {
-            files: [{
-                expand: true,
-                cwd: 'client/scripts',
-                /* Name our ES6 files with *.es6 */
-                src: '**/*.es6',
-                /* Copy into a folder named temp */
-                dest: 'temp',
-                ext: '.js'
-            }]
-        }
+      options: {
+        presets: ['babel-preset-env'],
+        sourceMap: true
+      },
+      scripts: {
+        files: [{
+          expand: true,
+          cwd: 'client/scripts/',
+          src: '**/*.*',
+          dest: 'temp',
+          ext: '.js'
+        }]
+      }
     },
     /* Combine files for easier sourcing */
     concat: {
-      /* Combine controllers into a single file */
-      controllers: {
-        src: ['temp/controllers/*.js'],
-        dest: 'temp/controllers.js',
-      },
-      /* Combine services into a single file */
-      services: {
-        src: ['temp/services/*.js', 'temp/factories/*.js'],
-        dest: 'temp/services.js',
-      }
-    },
-    /* Minify the files */
-    uglify: {
       options: {
-          sourceMap: true,
+        sourceMap: true,
+        sourceMapIncludeSources: true
       },
-      files: {
-        expand: true,
-        /* Minify everything in the temp folder */
-        cwd: 'temp',
-        src: '*.js',
-        dest: 'server/public/scripts',
-        ext : '.min.js'
+      clientapp: {
+        src: ['temp/*.js', 'temp/controllers/*.js', 'temp/services/*.js', 'temp/classes/*.js'],
+        dest: 'server/public/scripts/clientapp.js'
       }
     },
     /* Copy vendor, html and css files */
@@ -94,16 +77,15 @@ module.exports = function(grunt) {
       // What files am I looking at
       files: ['client/**/*.*'],
       // What tasks should I complete
-      tasks: ['babel', 'concat', 'uglify', 'copy']
+      tasks: ['babel', 'concat', 'copy']
     }
   });
   // LOAD PLUGIN: Bring the plugin into the project
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // REGISTER TASK: Actually use the plugin
-  grunt.registerTask('default', ['babel', 'concat', 'uglify', 'copy', 'watch']);
+  grunt.registerTask('default', ['babel', 'concat', 'copy', 'watch']);
 };
