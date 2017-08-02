@@ -1,4 +1,4 @@
-myApp.controller('MarketController', ['UserService' ,function(UserService) {
+myApp.controller('MarketController', ['UserService' ,function(UserService, $http) {
   console.log('MarketController created');
   var vm = this;
   vm.userService = UserService;
@@ -6,14 +6,17 @@ myApp.controller('MarketController', ['UserService' ,function(UserService) {
   vm.marketItems = [];
 
 // vm.userService.getuser();
-  vm.getMarketItems();
+
 
   vm.getMarketItems = function(){
     console.log('in getMarketItems');
-    $http.get('/items').then(function(response){
+    $http.get('/market/items').then(function(response){
       console.log('got GET response', response);
-      vm.marketItems = response.data;
-      console.log('vm.marketItems:', vm.marketItems);
+
+
+
+      // vm.marketItems = response.data;
+      // console.log('vm.marketItems:', vm.marketItems);
     });
   };
 
@@ -22,5 +25,5 @@ myApp.controller('MarketController', ['UserService' ,function(UserService) {
     vm.getMarketItems();
   }, 8000);
 
-
+vm.getMarketItems();
 }]);
