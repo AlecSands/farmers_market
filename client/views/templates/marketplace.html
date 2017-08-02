@@ -3,8 +3,8 @@
   <div class="content">
     <h2>Marketplace</h2>
     <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money}} to spend.</h3>
-    <md-card ng-repeat="mc.marketItems">
-      <p>test</p>
-    </md-card>
+    <div ng-repeat="item in mc.marketItems">
+      <p>{{item}}</p>
+    </div>
   </div>
 </div>
