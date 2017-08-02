@@ -30,6 +30,16 @@ module.exports = function(grunt) {
     },
     /* Copy vendor, html and css files */
     copy: {
+      vendors: {
+        // Required but not getting into at this point
+        expand: true,
+        // Current working directory, where are the files?
+        cwd: 'client/vendors/',
+        // List of files to copy
+        src: ['*.*'],
+        // Destination, where should we put them?
+        dest: 'server/public/vendors/'
+      },
       // name of the task e.g. angular
       angular: {
         // Required but not getting into at this point
