@@ -31,6 +31,11 @@ var marketItems = [
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
+
+function changeItemCost() {
+
+};
+
 router.get('/items', function(req, res){
   console.log('marketRouter - get /items');
   res.send(marketItems);
@@ -38,6 +43,7 @@ router.get('/items', function(req, res){
 
 router.put('/buy/:id', function(req, res){
   console.log('marketRouter - put /buy');
+
   // TODO: Save to the database
   res.sendStatus(200); // <- Temporary
 });
@@ -55,3 +61,17 @@ router.get('/leaderboard', function(req, res){
 });
 
 module.exports = router;
+
+
+function chooseRandomPrice() {
+  console.log('chooseRandomPrice');
+  console.log((Math.random() * (0.01 - 0.15) + 0.15).toFixed(2));
+  return (Math.random() * (0.01 - 0.15) + 0.15).toFixed(2);
+}
+
+var productPrice;
+function changePriceOnTimer() {
+  productPrice = setInterval(chooseRandomPrice, 10000);
+}
+
+console.log(changePriceOnTimer());
