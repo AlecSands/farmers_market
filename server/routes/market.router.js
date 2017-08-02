@@ -9,7 +9,7 @@ var express = require('express');
 
 // Express router to mount market related functions on.
 var router = express.Router();
-
+var Users = require('../models/user.js');
 // For base mode, use this array
 // As a stretch goal, move this to the database
 var marketItems = [
@@ -51,7 +51,30 @@ router.put('/sell/:id', function(req, res){
 router.get('/leaderboard', function(req, res){
   console.log('marketRouter - get /leaderboard');
   // TODO: Retrieve from the database
-  res.send([]); // <- Temporary
+
+  Users.find({}, function(err, result) { //find * (same as in mongoose)
+  if(err) {
+    console.log('find error: ', err);
+    res.sendStatus(500);
+  } else {
+    //res.send(data); //array of objects - each obj a document in the collectin in the db
+    //res.send(result.rows) - same as
+
+    var arrayOfResults = [];
+    for(i=0;i<result.length;i++){
+      var eachUserStuff = {};
+       eachUserStuff.username = result[i].username;
+       eachUserStuff.moneys = result[i].money;
+      //var x = result[i].username;
+      //console.log(x);
+      arrayOfResults.push(eachUserStuff);
+    }
+    console.log('got all users ', arrayOfResults);
+    res.send(arrayOfResults);
+  }//end if
+});//end find
+
+  //res.send([]); // <- Temporary
 });
 
 module.exports = router;
