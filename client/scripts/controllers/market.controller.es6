@@ -5,7 +5,7 @@ myApp.controller('MarketController', ['UserService', '$http' ,function(UserServi
   vm.userObject = UserService.userObject;
   vm.marketItems = [];
 
-// vm.userService.getuser();
+  vm.userService.getuser();
 
 
   vm.getMarketItems = function(){
