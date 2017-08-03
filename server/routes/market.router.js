@@ -124,6 +124,9 @@ router.put('/buy/:id', function(req, res){
 router.put('/sell/:id', function(req, res){
   console.log('marketRouter - put /sell');
   // TODO: Save to the database
+  var itemId = req.params.id;
+  sellItem(req, itemId, res);
+
   res.sendStatus(200); // <- Temporary
 });
 
