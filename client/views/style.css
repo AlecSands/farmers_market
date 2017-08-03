@@ -94,9 +94,8 @@ li a:hover {
 }
 
 md-card {
-  height: 150px;
+  height: 200px;
   text-align: center;
-  width: 20%;
   float: left;
 }
 

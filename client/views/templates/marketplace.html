@@ -3,14 +3,16 @@
   <div class="content">
     <h2>Marketplace</h2>
     <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money}} to spend.</h3>
-    <md-card ng-repeat="item in mc.marketItems">
-      <md-card-subtitle>{{item.name}}</md-card-subtitle>
-      <md-card-subtitle>{{item.cost}}</md-card-subtitle>
-      <md-card-actions>
-        <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
-        <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
-      </md-card-actions>
-      <md-card-footer>Your Item Qty:</md-card-footer>
-    </md-card>
+    <div layout="row">
+      <md-card flex="50" ng-repeat="item in mc.marketItems">
+        <md-card-subtitle>{{item.name}}</md-card-subtitle>
+        <md-card-subtitle>{{item.cost}}</md-card-subtitle>
+        <md-card-actions>
+          <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
+          <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
+        </md-card-actions>
+        <md-card-footer>Your Item Qty:</md-card-footer>
+      </md-card>
+    </div>
   </div>
 </div>
