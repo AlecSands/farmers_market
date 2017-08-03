@@ -67,6 +67,26 @@ var marketItems = [{
 
 /////// CHASE AND ALEC STUFF HERE
 
+function adjustCost(i) {
+  //console.log('in adjustCost i is:', i);
+  if(Math.random() > 0.5){
+    marketItems[i].cost += parseFloat((Math.random() * 0.15));
+  } else {
+    marketItems[i].cost -= parseFloat((Math.random() * 0.15));
+  }
+    marketItems[i].cost = parseFloat(marketItems[i].cost.toFixed(2));
+}
+
+function changePrices(array){
+  for(var i = 0; i < array.length; i++) {
+    adjustCost(i);
+  }
+}
+
+setInterval(function(){
+  changePrices(marketItems);
+}, 10000);
+
 sellItem = function(req, id, res) {
     user = req.user;
     console.log(req.user);
