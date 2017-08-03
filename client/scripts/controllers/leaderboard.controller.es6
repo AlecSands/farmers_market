@@ -7,7 +7,7 @@ myApp.controller('LeaderController', ['UserService','$http', function(UserServic
 
   console.log('user service here', UserService.userObject.userName);
 
-  getUsers();
+  setInterval(getUsers(), 1000);
 
   function getUsers(){
     $http.get('/market/leaderboard').then(function(response) {
