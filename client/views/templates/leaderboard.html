@@ -1,7 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <div class="content">
-      
+
     <h2>Leaderboard</h2>
+    <!-- <p>paragraph tag{{lbc.message}}</p> -->
+    <ol>
+      <li ng-repeat="person in lbc.arrayofUsers">{{person.username}}</li>
+    </ol>
+
+
   </div>
 </div>
