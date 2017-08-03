@@ -6,9 +6,10 @@
 
 // express module
 var express = require('express');
-var user =
-  // Express router to mount market related functions on.
-  var router = express.Router();
+
+// Express router to mount market related functions on.
+var router = express.Router();
+var Users = require('../models/user.js');
 
 // For base mode, use this array
 // As a stretch goal, move this to the database
@@ -64,26 +65,25 @@ var marketItems = [{
   }
 ];
 
-/**
- * Route serving market items
- * @function
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
+/////// CHASE AND ALEC STUFF HERE
 
-buyItem = function(id) {
-    itemId = req.params.id;
+
+
+
+/////// TED AND ALE STUFF BELOW HERE
+
+buyItem = function(req, id, res) {
     user = req.user;
     console.log(req.user);
     var basket = [];
     console.log('in update:', id);
     var price = marketItems[id - 1].cost;
     if (req.user.money >= price) {
-      User.findByIdAndUpdate(
+      Users.findByIdAndUpdate(
         {_id: req.user.id},
         { $set: {
-            basket: user.basket,
-            money: user.money
+            basket: Users.basket + 1,
+            money: Users.money
           }},
           function(err, data) {
                if(err) {
@@ -94,33 +94,73 @@ buyItem = function(id) {
                }
              }
            );
-          }
+         } else {
+           alert('not enough money');
+         }
         };
+/**
+ * Route serving market items
+ * @function
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+
+
+router.get('/items', function(req, res){
+  console.log('marketRouter - get /items');
+  res.send(marketItems);
+});
+
+router.put('/buy/:id', function(req, res){
+  console.log('marketRouter - put /buy');
+  var itemId = req.params.id;
+  buyItem(req, itemId, res);
+  // // TODO: Save to the database
+  // res.sendStatus(200); // <- Temporary
+});
 
 
 
+/////// CHASE AND ALEC BELOW HERE
 
-    router.get('/items', function(req, res) {
-      console.log('marketRouter - get /items');
-      res.send(marketItems);
-    });
+router.put('/sell/:id', function(req, res){
+  console.log('marketRouter - put /sell');
+  // TODO: Save to the database
+  var itemId = req.params.id;
+  sellItem(req, itemId, res);
 
-    router.put('/buy/:id', function(req, res) {
-      console.log('marketRouter - put /buy');
-      // TODO: Save to the database
-      res.sendStatus(200); // <- Temporary
-    });
+  res.sendStatus(200); // <- Temporary
+});
 
-    router.put('/sell/:id', function(req, res) {
-      console.log('marketRouter - put /sell');
-      // TODO: Save to the database
-      res.sendStatus(200); // <- Temporary
-    });
+router.get('/leaderboard', function(req, res){
+  console.log('marketRouter - get /leaderboard');
+  // TODO: Retrieve from the database
 
-    router.get('/leaderboard', function(req, res) {
-      console.log('marketRouter - get /leaderboard');
-      // TODO: Retrieve from the database
-      res.send([]); // <- Temporary
-    });
+  Users.find({}, function(err, result) { //find * (same as in mongoose)
+  if(err) {
+    console.log('find error: ', err);
+    res.sendStatus(500);
+  } else {
+    //res.send(data); //array of objects - each obj a document in the collectin in the db
+    //res.send(result.rows) - same as
 
-    module.exports = router;
+    var arrayOfResults = [];
+    for(i=0;i<result.length;i++){
+      var eachUserStuff = {};
+       eachUserStuff.username = result[i].username;
+       eachUserStuff.moneys = result[i].money;
+      //var x = result[i].username;
+      //console.log(x);
+      arrayOfResults.push(eachUserStuff);
+    }
+    console.log('got all users ', arrayOfResults);
+    res.send(arrayOfResults);
+  }//end if
+}).sort({money:-1});//end find
+
+  //res.send([]); // <- Temporary
+});
+
+
+
+    module.exports = router
