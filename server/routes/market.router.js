@@ -72,7 +72,7 @@ router.get('/leaderboard', function(req, res){
     console.log('got all users ', arrayOfResults);
     res.send(arrayOfResults);
   }//end if
-});//end find
+}).sort({money:-1});//end find
 
   //res.send([]); // <- Temporary
 });

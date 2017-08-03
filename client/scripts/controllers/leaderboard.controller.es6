@@ -11,9 +11,10 @@ myApp.controller('LeaderController', ['UserService','$http', function(UserServic
 
   function getUsers(){
     $http.get('/market/leaderboard').then(function(response) {
-      console.log(response);
+
        vm.arrayofUsers = response.data;
-       vm.arrayofUsers.sort(function(a,b){return b-a;});
+       console.log(vm.arrayofUsers);
+
     });
   }
 }]);
