@@ -5,7 +5,7 @@
     <h2>Leaderboard</h2>
     <!-- <p>paragraph tag{{lbc.message}}</p> -->
     <ol>
-      <li ng-repeat="person in lbc.arrayofUsers | limitTo: 10">{{person.username}}</li>
+      <li ng-repeat="person in lbc.arrayofUsers | limitTo: 10">{{person.username}} - ${{person.moneys.toFixed(2)}}</li>
     </ol>
   </div>
 </div>
