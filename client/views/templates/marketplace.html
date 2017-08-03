@@ -4,8 +4,10 @@
     <h2>Marketplace</h2>
     <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money.toFixed(2)}} to spend.</h3>
     <div layout="row">
-      <md-card ng-show="item.id < 6" flex="12" ng-repeat="item in mc.marketItems">
+      <md-card ng-show="item.id < 6" flex="20" ng-repeat="item in mc.marketItems">
         <img class="imgclass" sm-card-image ng-src="/views/images/{{item.name}}.jpg">
+
+
         <md-card-subtitle>{{item.name}}</md-card-subtitle>
         <md-card-subtitle>{{item.cost}}</md-card-subtitle>
 
@@ -13,12 +15,15 @@
           <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
           <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
         </md-card-actions>
-        <md-card-footer ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Your Item Qty:{{mc.userObject.basket[item.id-1].quantity}} Average Price: {{(mc.userObject.basket[item.id-1].totalSpent / mc.userObject.basket[item.id-1].timesBought).toFixed(2)}}</md-card-footer>
+        <div ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Your Item Qty:{{mc.userObject.basket[item.id-1].quantity}}</div>
+        <br/>
+        <div ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Average Price: {{(mc.userObject.basket[item.id-1].totalSpent / mc.userObject.basket[item.id-1].timesBought).toFixed(2)}}</div>
       </md-card>
+
     </div>
 
     <div layout="row">
-      <md-card ng-show="item.id > 5" flex="12" ng-repeat="item in mc.marketItems">
+      <md-card ng-show="item.id > 5" flex="20" ng-repeat="item in mc.marketItems">
         <img class="imgclass" sm-card-image ng-src="/views/images/{{item.name}}.jpg">
         <md-card-subtitle>{{item.name}}</md-card-subtitle>
         <md-card-subtitle>{{item.cost}}</md-card-subtitle>
@@ -27,7 +32,9 @@
           <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
           <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
         </md-card-actions>
-        <md-card-footer ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Your Item Qty:{{mc.userObject.basket[item.id-1].quantity}} Average Price: {{(mc.userObject.basket[item.id-1].totalSpent / mc.userObject.basket[item.id-1].timesBought).toFixed(2)}}</md-card-footer>
+        <div ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Your Item Qty:{{mc.userObject.basket[item.id-1].quantity}}</div>
+        <br/>
+        <div ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Average Price: {{(mc.userObject.basket[item.id-1].totalSpent / mc.userObject.basket[item.id-1].timesBought).toFixed(2)}}</div>
       </md-card>
     </div>
   </div>
