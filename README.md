@@ -23,7 +23,7 @@ All client work should be done in the `client/` directory and all server work sh
 - [x] Ability to register and log in
 - [ ] Display a list of available items to purchase on the Marketplace page
 - [ ] Ability to buy or sell items available for purchase
-- [ ] Server should randomly change product prices (within a 1 - 15 cent range) every 10 seconds for each product
+- [x] Server should randomly change product prices (within a 1 - 15 cent range) every 10 seconds for each product
 - [ ] Client will check for updates every 8 seconds
 - [ ] Leaderboard page that displays the top 10 users ranked by the most cash on hand
 - [ ] Leaderboard is refreshed every 10 seconds automatically
