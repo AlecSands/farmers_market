@@ -67,7 +67,37 @@ var marketItems = [{
 
 /////// CHASE AND ALEC STUFF HERE
 
+sellItem = function(req, id, res) {
+    user = req.user;
+    console.log(req.user);
+    console.log('in sellItem:', id);
 
+    var price = marketItems[id - 1].cost;
+    if (user.basket[id-1] > 0) {
+      var userBasket = user.basket;
+      userBasket[id-1] -= 1;
+      var userMoney = user.money + marketItems[id - 1].cost;
+
+      Users.findByIdAndUpdate(
+        {_id: req.user.id},
+        { $set: {
+            basket: userBasket,
+            money: userMoney,
+          }},
+          function(err, data) {
+               if(err) {
+                 console.log('remove error: ', err);
+                 res.sendStatus(500);
+               } else {
+                 res.sendStatus(200);
+               }
+             }
+           );
+          }
+        else {
+          console.log('NO ITEMS TO SELL');
+        }
+        };
 
 
 /////// TED AND ALE STUFF BELOW HERE
@@ -129,7 +159,6 @@ router.put('/sell/:id', function(req, res){
   var itemId = req.params.id;
   sellItem(req, itemId, res);
 
-  res.sendStatus(200); // <- Temporary
 });
 
 router.get('/leaderboard', function(req, res){
