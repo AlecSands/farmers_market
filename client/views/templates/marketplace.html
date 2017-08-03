@@ -2,7 +2,7 @@
 <div class="container">
   <div class="content">
     <h2>Marketplace</h2>
-    <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money}} to spend.</h3>
+    <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money.toFixed(2)}} to spend.</h3>
     <div layout="row">
       <md-card flex="50" ng-repeat="item in mc.marketItems">
         <md-card-subtitle>{{item.name}}</md-card-subtitle>
@@ -11,7 +11,7 @@
           <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
           <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
         </md-card-actions>
-        <md-card-footer>Your Item Qty:{{mc.userObject.basket[id-1]}}</md-card-footer>
+        <md-card-footer ng-show="mc.userObject.basket[item.id-1].timesBought != 0">Your Item Qty:{{mc.userObject.basket[item.id-1].quantity}} Average Price: {{(mc.userObject.basket[item.id-1].totalSpent / mc.userObject.basket[item.id-1].timesBought).toFixed(2)}}</md-card-footer>
       </md-card>
     </div>
   </div>
