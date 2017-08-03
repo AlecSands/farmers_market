@@ -82,8 +82,8 @@ buyItem = function(req, id, res) {
       Users.findByIdAndUpdate(
         {_id: req.user.id},
         { $set: {
-            basket: user.basket,
-            money: user.money
+            basket: Users.basket + 1,
+            money: Users.money
           }},
           function(err, data) {
                if(err) {
@@ -94,7 +94,9 @@ buyItem = function(req, id, res) {
                }
              }
            );
-          }
+         } else {
+           alert('not enough money');
+         }
         };
 /**
  * Route serving market items
