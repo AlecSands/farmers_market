@@ -73,10 +73,11 @@ sellItem = function(req, id, res) {
     console.log('in sellItem:', id);
 
     var price = marketItems[id - 1].cost;
-    if (user.basket[id-1] > 0) {
+    if (user.basket[id-1].quantity > 0) {
       var userBasket = user.basket;
-      userBasket[id-1] -= 1;
+      userBasket[id-1].quantity -= 1;
       var userMoney = user.money + marketItems[id - 1].cost;
+
 
       Users.findByIdAndUpdate(
         {_id: req.user.id},
@@ -105,15 +106,22 @@ sellItem = function(req, id, res) {
 buyItem = function(req, id, res) {
     user = req.user;
     console.log(req.user);
-    var basket = [];
-    console.log('in update:', id);
+    console.log('in buyItem:', id);
     var price = marketItems[id - 1].cost;
     if (req.user.money >= price) {
+      var newMoney = req.user.money - price;
+      var newBasket = user.basket;
+      newBasket[id-1].quantity+= 1;
+
+      newBasket[id-1].timesBought +=1;
+      newBasket[id-1].totalSpent += price;
+
       Users.findByIdAndUpdate(
         {_id: req.user.id},
         { $set: {
-            basket: user.basket,
-            money: user.money
+            basket: newBasket,
+            money: newMoney,
+
           }},
           function(err, data) {
                if(err) {

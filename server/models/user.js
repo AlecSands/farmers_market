@@ -8,7 +8,17 @@ var UserSchema = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
     money: {type: Number, default: 100},
-    basket: {type: Array, default: [5,5,5,5,5,5,5,5,5,5]}
+    basket: {type: Array, default: [
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0},
+      {quantity:0, totalSpent:0, timesBought: 0}]}
 });
 
 // Called before adding a new user to the DB. Encrypts password.
