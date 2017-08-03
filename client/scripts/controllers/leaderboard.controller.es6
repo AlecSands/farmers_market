@@ -7,13 +7,15 @@ myApp.controller('LeaderController', ['UserService','$http', function(UserServic
 
   console.log('user service here', UserService.userObject.userName);
 
-  getUsers();
+  setInterval(getUsers, 1000);
 
   function getUsers(){
+    console.log('get users called');
     $http.get('/market/leaderboard').then(function(response) {
 
        vm.arrayofUsers = response.data;
-       console.log(vm.arrayofUsers);
+       //console.log(vm.arrayofUsers);
+       //console.log('got all leaderboard users');
 
     });
   }

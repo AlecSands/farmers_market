@@ -67,16 +67,40 @@ var marketItems = [{
 
 /////// CHASE AND ALEC STUFF HERE
 
+function adjustCost(i) {
+  var testCost = marketItems[i].cost;
+  if(Math.random() > 0.5){
+    marketItems[i].cost += parseFloat((Math.random() * 0.15));
+  } else {
+    marketItems[i].cost -= parseFloat((Math.random() * 0.15));
+  }
+    marketItems[i].cost = parseFloat(marketItems[i].cost.toFixed(2));
+    if(marketItems[i].cost < .50 || marketItems[i].cost > 49.99){
+      marketItems[i].cost = testCost;
+    }
+}
+
+function changePrices(array){
+  for(var i = 0; i < array.length; i++) {
+    adjustCost(i);
+  }
+}
+
+setInterval(function(){
+  changePrices(marketItems);
+}, 10000);
+
 sellItem = function(req, id, res) {
     user = req.user;
     console.log(req.user);
     console.log('in sellItem:', id);
 
     var price = marketItems[id - 1].cost;
-    if (user.basket[id-1] > 0) {
+    if (user.basket[id-1].quantity > 0) {
       var userBasket = user.basket;
-      userBasket[id-1] -= 1;
+      userBasket[id-1].quantity -= 1;
       var userMoney = user.money + marketItems[id - 1].cost;
+
 
       Users.findByIdAndUpdate(
         {_id: req.user.id},
@@ -105,15 +129,22 @@ sellItem = function(req, id, res) {
 buyItem = function(req, id, res) {
     user = req.user;
     console.log(req.user);
-    var basket = [];
-    console.log('in update:', id);
+    console.log('in buyItem:', id);
     var price = marketItems[id - 1].cost;
     if (req.user.money >= price) {
+      var newMoney = req.user.money - price;
+      var newBasket = user.basket;
+      newBasket[id-1].quantity+= 1;
+
+      newBasket[id-1].timesBought +=1;
+      newBasket[id-1].totalSpent += price;
+
       Users.findByIdAndUpdate(
         {_id: req.user.id},
         { $set: {
-            basket: Users.basket + 1,
-            money: Users.money
+            basket: newBasket,
+            money: newMoney,
+
           }},
           function(err, data) {
                if(err) {
@@ -124,9 +155,8 @@ buyItem = function(req, id, res) {
                }
              }
            );
-         } else {
-           alert('not enough money');
-         }
+          }
+          console.log('UNSUFFICIENT FUNDS!');
         };
 /**
  * Route serving market items
@@ -192,4 +222,4 @@ router.get('/leaderboard', function(req, res){
 
 
 
-    module.exports = router
+  module.exports = router;
