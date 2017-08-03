@@ -6,7 +6,7 @@ myApp.controller('MarketController', ['UserService', '$http' ,function(UserServi
   vm.marketItems = [];
 
   vm.userService.getuser();
-
+console.log("USER OBJECT IS:",vm.userObject);
   vm.getMarketItems = function(){
     console.log('in getMarketItems');
     $http.get('/market/items').then(function(response){
