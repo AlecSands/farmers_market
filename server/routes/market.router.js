@@ -120,7 +120,6 @@ sellItem = function(req, id, res) {
           }
         else {
           console.log('NO ITEMS TO SELL');
-          res.sendStatus(200);
         }
         };
 
@@ -158,7 +157,6 @@ buyItem = function(req, id, res) {
            );
           }
           console.log('UNSUFFICIENT FUNDS!');
-          res.sendStatus(500);
         };
 /**
  * Route serving market items
