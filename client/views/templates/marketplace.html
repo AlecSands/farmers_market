@@ -5,8 +5,10 @@
     <h3 id="welcome" class="lead">Welcome, {{mc.userObject.userName}}! You have ${{mc.userObject.money}} to spend.</h3>
     <div layout="row">
       <md-card flex="50" ng-repeat="item in mc.marketItems">
+        <img sm-card-image src="/views/images/{{item.name}}.jpg">
         <md-card-subtitle>{{item.name}}</md-card-subtitle>
         <md-card-subtitle>{{item.cost}}</md-card-subtitle>
+
         <md-card-actions>
           <button type="button" name="buy" ng-click="mc.buy(item.id)">Buy</button>
           <button type="button" name="sell" ng-click="mc.sell(item.id)">Sell</button>
