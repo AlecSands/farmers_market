@@ -92,3 +92,14 @@ li a:hover {
     text-decoration: underline;
     color: #564B3D;
 }
+
+md-card {
+  height: 150px;
+  text-align: center;
+  width: 20%;
+  float: left;
+}
+
+md-card-subtitle {
+  padding-top: 15px;
+}
