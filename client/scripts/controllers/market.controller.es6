@@ -39,41 +39,4 @@ console.log("USER OBJECT IS:",vm.userObject);
 
   vm.getMarketItems();
 
-
-  var marketThings = [
-    {id: 1, name: 'Apple', cost: 0.99},
-    {id: 2, name: 'Tomatoe', cost: 1.19},
-    {id: 3, name: 'Coffee', cost: 2.99},
-    {id: 4, name: 'Flowers', cost: 8.99},
-    {id: 5, name: 'Orange', cost: 0.89},
-    {id: 6, name: 'Pepper', cost: 1.29},
-    {id: 7, name: 'Lettuce', cost: 2.99},
-    {id: 8, name: 'Basket', cost: 5.99},
-    {id: 9, name: 'Apron', cost: 19.99},
-    {id: 10, name: 'Potholders', cost: 19.99}
-  ];
-
-  ///// CODE FOR SERVER ADJUST COST INTERVAL FUNCTIONS //////
-
-  // function adjustCost(i) {
-  //   //console.log('in adjustCost i is:', i);
-  //   if(Math.random() > 0.5){
-  //     marketThings[i].cost += parseFloat((Math.random() * 0.15));
-  //   } else {
-  //     marketThings[i].cost -= parseFloat((Math.random() * 0.15));
-  //   }
-  //     marketThings[i].cost = parseFloat(marketThings[i].cost.toFixed(2));
-  // }
-  //
-  // function changePrices(array){
-  //   for(var i = 0; i < array.length; i++) {
-  //     adjustCost(i);
-  //   }
-  // }
-  //
-  // setInterval(function(){
-  //   changePrices(marketThings);
-  //   console.log(marketThings);
-  // }, 10000);
-
 }]);
