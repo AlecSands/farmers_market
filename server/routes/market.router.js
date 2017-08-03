@@ -65,6 +65,12 @@ var marketItems = [{
   }
 ];
 
+/////// CHASE AND ALEC STUFF HERE
+
+
+
+
+/////// TED AND ALE STUFF BELOW HERE
 
 buyItem = function(req, id, res) {
     user = req.user;
@@ -110,6 +116,10 @@ router.put('/buy/:id', function(req, res){
   // // TODO: Save to the database
   // res.sendStatus(200); // <- Temporary
 });
+
+
+
+/////// CHASE AND ALEC BELOW HERE
 
 router.put('/sell/:id', function(req, res){
   console.log('marketRouter - put /sell');
